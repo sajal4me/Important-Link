@@ -1,0 +1,14 @@
+ func animateCloud(layer: CALayer) {     
+ 
+ //1     let cloudSpeed = 60.0 / Double(view.layer.frame.size.width)     
+ let duration: TimeInterval = Double(view.layer.frame.size.width - layer.frame.origin.x) * cloudSpeed          
+ //2     let cloudMove = CABasicAnimation(keyPath: "position.x")     
+ cloudMove.duration = duration     
+ cloudMove.toValue = self.view.bounds.width + layer.bounds.width/2    
+ cloudMove.delegate = self     
+ cloudMove.setValue("cloud", forKey: "name")     
+ cloudMove.setValue(layer, forKey: "layer")     
+ layer.add(cloudMove, forKey: nil)   
+ 
+ } 
+//===================================================================
