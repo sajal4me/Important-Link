@@ -55,3 +55,11 @@ class HTMLElement {
     }
 }Copy
 This is also a good example of an instance that is reasonable to use an unowned reference, as the asHTML closure should exist as long as the HTMLElement does, but no longer.
+
+
+
+
+//Button right side imAGE SETTING
+
+ self.buttonName.semanticContentAttribute = UIApplication.shared
+            .userInterfaceLayoutDirection == .rightToLeft ? .forceLeftToRight : .forceRightToLeft
