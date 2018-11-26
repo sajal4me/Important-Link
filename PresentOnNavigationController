@@ -1,0 +1,12 @@
+@IBAction func commentsButtonTapped(_ sender: UIButton) {
+        guard let feed = feed else { return }
+        let scene = CommentsVC.instantiate(fromAppStoryboard: .Home)
+        scene.postId = feed.id
+        scene.delegate = self
+        scene.commentCount = feed.commentsCount
+        scene.modalTransitionStyle = .crossDissolve
+        scene.modalPresentationStyle = .overCurrentContext
+        let nvc = UINavigationController(rootViewController: scene)
+        nvc.navigationBar.isHidden = false
+        self.present(nvc, animated: true, completion: nil)
+    }
