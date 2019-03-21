@@ -63,3 +63,25 @@ This is also a good example of an instance that is reasonable to use an unowned 
 
  self.buttonName.semanticContentAttribute = UIApplication.shared
             .userInterfaceLayoutDirection == .rightToLeft ? .forceLeftToRight : .forceRightToLeft
+
+
+//UIAlertController
+=============================================
+
+ func userCallAlert(title: String? = nil, message: String? = nil, callThroughApp: @escaping (Bool) -> (Void), callThroughPhone: @escaping (Bool) -> (Void)) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+       
+        alert.addAction(UIAlertAction(title: StringConstants.VoiceCallThroughApp.localized, style: .default, handler: { action in
+            callThroughApp(true)
+        }))
+      
+        alert.addAction(UIAlertAction(title: StringConstants.VoiceCallThroughPhoneContact.localized, style: .default, handler: { action in
+            callThroughPhone(true)
+        }))
+        
+        alert.addAction(UIAlertAction(title: StringConstants.CancleActionSheet.localized, style: .cancel, handler: { action in
+            
+        }))
+       // let root = UIApplication.shared.keyWindow?.rootViewController
+            self.present(alert, animated: true, completion: nil)
+    }
