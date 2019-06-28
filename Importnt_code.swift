@@ -85,3 +85,26 @@ This is also a good example of an instance that is reasonable to use an unowned 
        // let root = UIApplication.shared.keyWindow?.rootViewController
             self.present(alert, animated: true, completion: nil)
     }
+
+//======================================
+extension NSMutableAttributedString {
+    
+    func setupAttriutedLable(texts: [String], fonts: [UIFont], colors: [UIColor]) -> NSAttributedString {
+        // multi line enable Button
+        //* button.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        
+        let output = NSMutableAttributedString.init(string: texts.first?.localize ?? "", attributes: [.foregroundColor: colors.first ?? .black, .font: fonts.first ?? .systemFont(ofSize: 10), .paragraphStyle: paragraphStyle])
+        guard texts.count > 1, texts.count == fonts.count, texts.count == colors.count else { return output }
+        for index in texts.indices.dropFirst() {
+            let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: colors[index], .font: fonts[index], .paragraphStyle: paragraphStyle]
+            output.append(NSAttributedString(string: texts[index].localize, attributes: attributes))
+        }
+        return output
+    }
+}
+//=========== useages: - 
+ let attributedString = NSMutableAttributedString(string: "Booked Via: Normal Appointment")
+ bookedViaLabel.attributedText = attributedString.setupAttriutedLable(texts: ["Booked Via: ", "Normal Appointment"], fonts: [AppFonts.Poppins_Bold.withSize(17), AppFonts.Poppins_Regular.withSize(16)], colors: [UIColor.green, AppColors.themeColor])
