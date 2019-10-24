@@ -108,3 +108,19 @@ extension NSMutableAttributedString {
 //=========== useages: - 
  let attributedString = NSMutableAttributedString(string: "Booked Via: Normal Appointment")
  bookedViaLabel.attributedText = attributedString.setupAttriutedLable(texts: ["Booked Via: ", "Normal Appointment"], fonts: [AppFonts.Poppins_Bold.withSize(17), AppFonts.Poppins_Regular.withSize(16)], colors: [UIColor.green, AppColors.themeColor])
+
+
+
+
+//
+
+func setupActivityIndicator() {
+        
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = AppColors.Blue.activityIndicator
+        activityIndicator.center = webView.convert(webView.center, from: activityIndicator)
+        webView.addSubview(activityIndicator)
+    }
+
+let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+activityIndicator.startAnimating()
