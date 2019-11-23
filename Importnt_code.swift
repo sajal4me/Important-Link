@@ -124,3 +124,7 @@ func setupActivityIndicator() {
 
 let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
 activityIndicator.startAnimating()
+
+
+text.size(withAttributes:[.font: AppFonts.Proxima_Nova_Rg_Regular.withSize(13)]).width + 80
+            
