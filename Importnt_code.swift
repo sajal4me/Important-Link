@@ -149,3 +149,11 @@ text.size(withAttributes:[.font: AppFonts.Proxima_Nova_Rg_Regular.withSize(13)])
     present(alertController, animated: true)
   }
             
+
+// ====================== Check childView controller  =============================
+extension RootViewController {
+  var stepController: StepCountController {
+    return children.first { $0 is StepCountController } as! StepCountController
+  }
+}
+
