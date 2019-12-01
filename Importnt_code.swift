@@ -128,5 +128,24 @@ activityIndicator.startAnimating()
 
 text.size(withAttributes:[.font: AppFonts.Proxima_Nova_Rg_Regular.withSize(13)]).width + 80
 
-// 
+// ============= Added textField in alert controller ===============================
+//========================================================================================
+  private func getGoalFromUser() {
+    let alertController = UIAlertController(title: "What is your step goal?", message: nil, preferredStyle: .alert)
+    alertController.addTextField { textField in
+      textField.placeholder = "1000"
+      textField.keyboardType = .numberPad
+    }
+    let action = UIAlertAction(title: "Done", style: .default) { [weak self] action in
+      guard let textField = alertController.textFields?.first else { return }
+      if let numberString = textField.text,
+        let goal = Int(numberString) {
+          self?.updateGoal(newGoal: goal)
+      } else {
+        self?.updateGoal(newGoal: 0)
+      }
+    }
+    alertController.addAction(action)
+    present(alertController, animated: true)
+  }
             
