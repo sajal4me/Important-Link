@@ -157,3 +157,50 @@ extension RootViewController {
   }
 }
 
+////////////////////
+
+    @objc static func presentRatingAlert(_ viewController: UIViewController) {
+
+        let alertController = UIAlertController(title: "Enter Default Ratings", message: "This ratings helps us to suggest more relevant programms", preferredStyle: .alert)
+
+        alertController.addTextField { textField in
+            textField.placeholder = "Enter Ratings for Yoga"
+            textField.keyboardType = .decimalPad
+        }
+
+        alertController.addTextField { textField in
+            textField.placeholder = "Enter Ratings for Zumba"
+            textField.keyboardType = .decimalPad
+        }
+
+        alertController.addTextField { textField in
+            textField.placeholder = "Enter Ratings for Tennis"
+            textField.keyboardType = .decimalPad
+        }
+
+
+        alertController.addAction(UIAlertAction(title: "Submit", style: .default, handler: { action in
+            guard let yogaTextField = alertController.textFields?.first else { return }
+            guard let zumbaTextField = alertController.textFields?[1] else { return }
+            guard let tennisTextField = alertController.textFields?[2] else { return }
+
+
+            if let yogaString = yogaTextField.text, let yogaRating = Double(yogaString), let zumbaString = zumbaTextField.text, let zumbaRating = Double(zumbaString), let tennisString = tennisTextField.text, let tennisRating = Double(tennisString) {
+                alertController.dismiss(animated: true) {
+                    self.pushProgrammeVC(viewController.navigationController, yogaRating: yogaRating, zumbaRating: zumbaRating, tennisRating: tennisRating)
+                }
+
+
+            }
+        }))
+
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+            // onCancel()
+             alertController.dismiss(animated: true)
+        }))
+
+        viewController.present(alertController, animated: true)
+
+    }
+
+
